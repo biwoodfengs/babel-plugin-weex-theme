@@ -162,6 +162,7 @@ module.exports = function core(defaultLibraryName) {
             cache[libraryName] = 1;
           }
 
+          importAll[path] = true;
           selectedMethods[methodName] = addDefault(file.path, path, { nameHint: methodName });
         } else {
           if (style === true) {
