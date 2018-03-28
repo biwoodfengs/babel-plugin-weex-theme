@@ -1,7 +1,7 @@
 {
-  "name": "babel-plugin-component",
-  "version": "1.1.0",
-  "description": "Modular build plugin for babel.",
+  "name": "babel-plugin-weexcomponent",
+  "version": "0.0.1-beta",
+  "description": "Modular weex-ui build plugin for babel. Fork from ElementUI/babel-plugin-component.",
   "main": "lib/index.js",
   "scripts": {
     "build": "rm -rf lib && babel src --out-dir lib --ignore __tests__",
@@ -18,8 +18,7 @@
     "babel-plugin"
   ],
   "author": [
-    "chencheng <sorrycc@gmail.com>",
-    "qingwei-li <cinwell.li@gmail.com>"
+    "Yanjiie <suenyinkit@163.com>"
   ],
   "license": "MIT",
   "devDependencies": {
@@ -37,10 +36,10 @@
     "mocha": "4.0.1",
     "pre-commit": "~1.1.2"
   },
-  "repository": "ElementUI/babel-plugin-component",
-  "homepage": "https://github.com/ElementUI/babel-plugin-component#readme",
+  "repository": "Yanjiie/babel-plugin-weexcomponent",
+  "homepage": "https://github.com/Yanjiie/babel-plugin-weexcomponent#readme",
   "bugs": {
-    "url": "https://github.com/ElementUI/babel-plugin-component/issues"
+    "url": "https://github.com/Yanjiie/babel-plugin-weexcomponent/issues"
   },
   "babel": {
     "presets": [
