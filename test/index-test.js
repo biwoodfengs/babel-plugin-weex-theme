@@ -133,6 +133,36 @@ describe('index', () => {
         }];
       }
 
+      if (caseName === 'import-js-theme') {
+        cssPlugin = [plugin, {
+          style: false,
+          libraryName: 'weex-flymeui',
+          themeDir: 'theme-paint',
+        }];
+      }
+
+      if (caseName === 'import-js-theme-custom') {
+        cssPlugin = [plugin, {
+          style: false,
+          libraryName: 'weex-flymeui',
+          themeDir: 'theme-paint',
+          themeConfig: {
+            name: 'blue',
+          },
+        }];
+      }
+
+      if (caseName === 'import-js-theme-module') {
+        cssPlugin = [plugin, {
+          style: false,
+          libraryName: 'weex-flymeui',
+          themeDir: 'theme-paint',
+          themeConfig: {
+            name: 'blue',
+          },
+        }];
+      }
+
       const actual = transformFileSync(actualFile, {
         presets: ['@babel/react'],
         plugins: cssPlugin && Array.isArray(cssPlugin[1]) ? cssPlugin : [cssPlugin || plugin],

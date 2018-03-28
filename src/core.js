@@ -35,16 +35,20 @@ module.exports = function core(defaultLibraryName) {
 
         const {
           libDir = 'lib',
+          themeDir,
           libraryName = defaultLibraryName,
           style = true,
           styleLibrary,
+          themeConfig,
           root = '',
           camel2Dash = true,
         } = options;
         let styleLibraryName = options.styleLibraryName;
+        let themeLibraryName;
         let _root = root;
         let isBaseStyle = true;
         let modulePathTpl;
+        let themeDefault;
         let styleRoot;
         let mixin = false;
         const ext = options.ext || '.css';
@@ -63,7 +67,6 @@ module.exports = function core(defaultLibraryName) {
         }
         const _path = path;
 
-        selectedMethods[methodName] = addDefault(file.path, path, { nameHint: methodName });
         if (styleLibrary && typeof styleLibrary === 'object') {
           styleLibraryName = styleLibrary.name;
           isBaseStyle = styleLibrary.base;
@@ -71,6 +74,16 @@ module.exports = function core(defaultLibraryName) {
           mixin = styleLibrary.mixin;
           styleRoot = styleLibrary.root;
         }
+
+        if (themeConfig && typeof themeConfig === 'object') {
+          themeDefault = themeConfig.default || 'default';
+          themeLibraryName = themeConfig.name;
+        }
+
+        if (!themeDir) {
+          selectedMethods[methodName] = addDefault(file.path, path, { nameHint: methodName });
+        }
+
         if (styleLibraryName) {
           if (!cachePath[libraryName]) {
             const themeName = styleLibraryName.replace(/^~/, '');
@@ -113,6 +126,43 @@ module.exports = function core(defaultLibraryName) {
           }
 
           addDefault(file.path, path, { nameHint: methodName });
+        } else if (themeDir) {
+          let themeName;
+          let themePath;
+          if (themeLibraryName) {
+            themeName = themeLibraryName.replace(/^~/, '');
+            themePath = themeLibraryName.indexOf('~') === 0
+              ? resolve(process.cwd(), themeName)
+              : `${libraryName}/${themeDir}/${themeName}`;
+          } else {
+            themePath = `${libraryName}/${themeDir}`;
+          }
+
+          if (libraryObjs[methodName]) {
+            /* istanbul ingore next */
+            if (cache[libraryName] === 2) {
+              throw Error('[babel-plugin-component] If you are using both' +
+                'on-demand and importing all, make sure to invoke the' +
+                ' importing all first.');
+            }
+
+            let moduleName;
+            const defaultThemeTpl = `${libraryName}/${themeDir}/${themeDefault}`;
+            const libraryObj = libraryObjs[methodName].replace(/\/$/gi, '');
+            if (themeName && libraryObj.includes(`${defaultThemeTpl}`)) {
+              moduleName = libraryObj.replace(`${defaultThemeTpl}`, '');
+            } else {
+              moduleName = libraryObj.replace(`${libraryName}/${themeDir}`, '');
+            }
+            if (moduleName) {
+              path = `${themePath}${moduleName}`;
+            } else {
+              path = `${themePath}${_root || '/index'}.js`;
+            }
+            cache[libraryName] = 1;
+          }
+
+          selectedMethods[methodName] = addDefault(file.path, path, { nameHint: methodName });
         } else {
           if (style === true) {
             addSideEffect(file.path, `${path}/style${ext}`);
@@ -160,8 +210,9 @@ module.exports = function core(defaultLibraryName) {
             result = opts.find(option => option.libraryName === value) || {};
           }
           const libraryName = result.libraryName || opts.libraryName || defaultLibraryName;
+          const themePath = `${libraryName}/${opts.themeDir || ''}`;
 
-          if (value === libraryName) {
+          if (value === libraryName || (opts.themeDir && value.startsWith(themePath))) {
             node.specifiers.forEach(spec => {
               if (types.isImportSpecifier(spec)) {
                 specified[spec.local.name] = spec.imported.name;
