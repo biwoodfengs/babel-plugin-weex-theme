@@ -1,6 +1,6 @@
 # babel-plugin-weexcomponent
 
-[![NPM version](https://img.shields.io/npm/v/babel-plugin-weexcomponent.svg)](https://npmjs.org/package/babel-plugin-component)
+[![NPM version](https://img.shields.io/npm/v/babel-plugin-weexcomponent.svg)](https://npmjs.org/package/babel-plugin-weexcomponent)
 [![Build Status](https://travis-ci.org/Yanjiie/babel-plugin-weexcomponent.svg?branch=master)](https://travis-ci.org/Yanjiie/babel-plugin-weexcomponent)
 [![Coverage Status](https://coveralls.io/repos/github/Yanjiie/babel-plugin-weexcomponent/badge.svg?branch=master)](https://coveralls.io/github/Yanjiie/babel-plugin-weexcomponent?branch=master)
 
