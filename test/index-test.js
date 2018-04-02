@@ -136,16 +136,16 @@ describe('index', () => {
       if (caseName === 'import-js-theme') {
         cssPlugin = [plugin, {
           style: false,
-          libraryName: 'weex-flymeui',
-          themeDir: 'theme-paint',
+          jsTheme: true,
+          libraryName: 'weex-ui',
         }];
       }
 
       if (caseName === 'import-js-theme-custom') {
         cssPlugin = [plugin, {
           style: false,
-          libraryName: 'weex-flymeui',
-          themeDir: 'theme-paint',
+          jsTheme: true,
+          libraryName: 'weex-ui',
           themeConfig: {
             name: 'blue',
           },
@@ -155,8 +155,8 @@ describe('index', () => {
       if (caseName === 'import-js-theme-module') {
         cssPlugin = [plugin, {
           style: false,
-          libraryName: 'weex-flymeui',
-          themeDir: 'theme-paint',
+          jsTheme: true,
+          libraryName: 'weex-ui',
           themeConfig: {
             name: 'blue',
           },

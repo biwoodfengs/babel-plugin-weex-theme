@@ -35,9 +35,10 @@ module.exports = function core(defaultLibraryName) {
 
         const {
           libDir = 'lib',
-          themeDir,
+          themeDir = 'lib/theme',
           libraryName = defaultLibraryName,
           style = true,
+          jsTheme = false,
           styleLibrary,
           themeConfig,
           root = '',
@@ -80,7 +81,7 @@ module.exports = function core(defaultLibraryName) {
           themeLibraryName = themeConfig.name;
         }
 
-        if (!themeDir) {
+        if (!jsTheme) {
           selectedMethods[methodName] = addDefault(file.path, path, { nameHint: methodName });
         }
 
@@ -126,7 +127,7 @@ module.exports = function core(defaultLibraryName) {
           }
 
           addDefault(file.path, path, { nameHint: methodName });
-        } else if (themeDir) {
+        } else if (jsTheme) {
           let themeName;
           let themePath;
           if (themeLibraryName) {
@@ -211,9 +212,9 @@ module.exports = function core(defaultLibraryName) {
             result = opts.find(option => option.libraryName === value) || {};
           }
           const libraryName = result.libraryName || opts.libraryName || defaultLibraryName;
-          const themePath = `${libraryName}/${opts.themeDir || ''}`;
+          const themePath = `${libraryName}/${opts.themeDir || 'lib/theme'}`;
 
-          if (value === libraryName || (opts.themeDir && value.startsWith(themePath))) {
+          if (value === libraryName || (opts.jsTheme && value.startsWith(themePath))) {
             node.specifiers.forEach(spec => {
               if (types.isImportSpecifier(spec)) {
                 specified[spec.local.name] = spec.imported.name;

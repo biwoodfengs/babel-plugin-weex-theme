@@ -1,3 +1,3 @@
-import STYLE from 'weex-flymeui/theme-paint/default/';
+import STYLE from 'weex-ui/lib/theme/default/';
 
 console.log(STYLE.mainColor);
