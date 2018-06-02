@@ -34,22 +34,22 @@ module.exports = function core(defaultLibraryName) {
         options = options || opts;
 
         const {
-          libDir = 'lib',
+          libDir = 'packages',
           themeDir = 'lib/theme',
           libraryName = defaultLibraryName,
           style = true,
           jsTheme = false,
           styleLibrary,
-          themeConfig,
+          // customTheme,
+          themeDefault = 'default',
           root = '',
           camel2Dash = true,
         } = options;
+        let { theme } = options;
         let styleLibraryName = options.styleLibraryName;
-        let themeLibraryName;
         let _root = root;
         let isBaseStyle = true;
         let modulePathTpl;
-        let themeDefault;
         let styleRoot;
         let mixin = false;
         const ext = options.ext || '.css';
@@ -76,10 +76,10 @@ module.exports = function core(defaultLibraryName) {
           styleRoot = styleLibrary.root;
         }
 
-        if (themeConfig && typeof themeConfig === 'object') {
-          themeDefault = themeConfig.default || 'default';
-          themeLibraryName = themeConfig.name;
+        if (!theme) {
+          theme = themeDefault || 'default';
         }
+        const themeLibraryName = theme;
 
         if (!jsTheme) {
           selectedMethods[methodName] = addDefault(file.path, path, { nameHint: methodName });
