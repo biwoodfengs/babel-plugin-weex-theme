@@ -1,5 +1,5 @@
 {
-  "name": "babel-plugin-weexcomponent",
+  "name": "babel-plugin-weex-component",
   "version": "0.0.3",
   "description": "Modular weex-ui build plugin for babel. Fork from ElementUI/babel-plugin-component.",
   "main": "lib/index.js",
