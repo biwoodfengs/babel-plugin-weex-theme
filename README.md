@@ -89,7 +89,7 @@ Via `.babelrc` or babel-loader.
 
 ### Component directory structure
 ```
-- lib // 'libDir'
+- packages // 'libDir'
   - index.js // or custom 'root' relative path
   - style.css // or custom 'style' relative path
   - componentA
@@ -171,14 +171,11 @@ or
   ```
 - `["component", { "style": true }]`: import js and css from 'style.css'
 - `["component", { "style": cssFilePath }]`: import style css from filePath
-- `["component", { "libDir": "lib" }]`: lib directory
+- `["component", { "libDir": "packages" }]`: lib directory
 - `["component", { "root": "index" }]`: main file dir
 - `["component", { "camel2Dash": false }]`: whether parse name to dash mode or not, default `true`
-- `["component", { "jsTheme": false }]`: replace default js theme name to `themeConfig.name` from `themeConfig`
-- `["component", { "themeDir": 'lib/theme' }]`: default js theme root path
-- `["component", { "themeConfig": {} }]`: Import a independent theme package with more config
-  ```
-  themeConfig: {
-    "name": "xxx", // custom theme name
-  }
-  ```
+- `["component", { "jsTheme": false }]`: replace default js theme name to `theme`
+- `["component", { "themeDir": "lib/theme" }]`: default js theme root path
+- `["component", { "theme": "default" }]`: Js theme name, It's valid when jsTheme is `true`
+- `["component", { "customTheme": "@/src/lib/theme" }]`: Custom js theme path, It's valid when jsTheme is `true`
+- `["component", { "themeDefault": "default" }]`: Default js theme name, default value is 'default'
