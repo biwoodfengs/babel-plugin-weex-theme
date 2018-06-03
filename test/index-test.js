@@ -15,6 +15,9 @@ describe('index', () => {
   }
 
   fixtures.map(caseName => {
+
+    if (caseName !== 'import-js-theme-custom-path') { return; }
+
     const fixtureDir = join(fixturesDir, caseName);
     const actualFile = join(fixtureDir, 'actual.js');
     const expectedFile = join(fixtureDir, 'expected.js');
@@ -25,12 +28,14 @@ describe('index', () => {
       let cssPlugin;
       if (caseName === 'import-css') {
         cssPlugin = [plugin, {
+          libDir: 'lib',
           style: true,
         }];
       }
 
       if (caseName === 'import-module') {
         cssPlugin = [plugin, {
+          libDir: 'lib',
           style: true,
           root: 'abc',
         }];
@@ -38,12 +43,14 @@ describe('index', () => {
 
       if (caseName === 'import-all-css') {
         cssPlugin = [plugin, {
+          libDir: 'lib',
           style: true,
         }];
       }
 
       if (caseName === 'import-theme') {
         cssPlugin = [plugin, {
+          libDir: 'lib',
           libraryName: 'element-ui',
           styleLibraryName: 'theme-default',
         }];
@@ -51,6 +58,7 @@ describe('index', () => {
 
       if (caseName === 'import-theme-custom') {
         cssPlugin = [plugin, {
+          libDir: 'lib',
           libraryName: 'element-ui4',
           styleLibrary: {
             base: false,
@@ -61,6 +69,7 @@ describe('index', () => {
 
       if (caseName === 'import-theme-custom-path') {
         cssPlugin = [plugin, {
+          libDir: 'lib',
           libraryName: 'element-ui5',
           styleLibrary: {
             base: false,
@@ -72,6 +81,7 @@ describe('index', () => {
 
       if (caseName === 'import-theme-all-compo') {
         cssPlugin = [plugin, {
+          libDir: 'lib',
           libraryName: 'element-ui2',
           styleLibraryName: 'theme-default',
         }];
@@ -80,6 +90,7 @@ describe('index', () => {
       if (caseName === 'independent-theme-package') {
         expected = expected.replace(/__theme__/g, process.cwd());
         cssPlugin = [plugin, {
+          libDir: 'lib',
           libraryName: 'element-ui3',
           styleLibraryName: '~theme',
         }];
@@ -88,6 +99,7 @@ describe('index', () => {
       if (caseName === 'independent-theme-package-custom') {
         expected = expected.replace(/__theme__/g, process.cwd());
         cssPlugin = [plugin, {
+          libDir: 'lib',
           libraryName: 'element-ui6',
           styleLibrary: {
             base: true,
@@ -99,6 +111,7 @@ describe('index', () => {
 
       if (caseName === 'independent-theme-package-mixin') {
         cssPlugin = [plugin, {
+          libDir: 'lib',
           libraryName: 'element-ui7',
           styleLibrary: {
             mixin: true,
@@ -110,16 +123,18 @@ describe('index', () => {
       }
 
       if (caseName === 'custom-css-filename') {
-        cssPlugin = [plugin, { style: 'style.css' }];
+        cssPlugin = [plugin, { libDir: 'lib', style: 'style.css' }];
       }
 
       if (caseName === 'multiple-module') {
         cssPlugin = [
           [plugin, {
+            libDir: 'lib',
             libraryName: 'antd',
             style: true,
           }, 'antd'],
           [plugin, {
+            libDir: 'lib',
             libraryName: 'test-module',
             style: true,
           }, 'test-module'],
@@ -128,6 +143,7 @@ describe('index', () => {
 
       if (caseName === 'camel-to-dash-option') {
         cssPlugin = [plugin, {
+          libDir: 'lib',
           libraryName: 'antd',
           camel2Dash: false,
         }];
@@ -135,7 +151,6 @@ describe('index', () => {
 
       if (caseName === 'import-js-theme') {
         cssPlugin = [plugin, {
-          style: false,
           jsTheme: true,
           libraryName: 'weex-ui',
         }];
@@ -143,23 +158,25 @@ describe('index', () => {
 
       if (caseName === 'import-js-theme-custom') {
         cssPlugin = [plugin, {
-          style: false,
           jsTheme: true,
           libraryName: 'weex-ui',
-          themeConfig: {
-            name: 'blue',
-          },
+          theme: 'blue',
         }];
       }
 
       if (caseName === 'import-js-theme-module') {
         cssPlugin = [plugin, {
-          style: false,
           jsTheme: true,
           libraryName: 'weex-ui',
-          themeConfig: {
-            name: 'blue',
-          },
+          theme: 'blue',
+        }];
+      }
+
+      if (caseName === 'import-js-theme-custom-path') {
+        cssPlugin = [plugin, {
+          jsTheme: true,
+          libraryName: 'weex-ui',
+          customTheme: '@/src/lib/theme',
         }];
       }
 

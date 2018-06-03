@@ -40,7 +40,7 @@ module.exports = function core(defaultLibraryName) {
           style = true,
           jsTheme = false,
           styleLibrary,
-          // customTheme,
+          customTheme,
           themeDefault = 'default',
           root = '',
           camel2Dash = true,
@@ -130,7 +130,10 @@ module.exports = function core(defaultLibraryName) {
         } else if (jsTheme) {
           let themeName;
           let themePath;
-          if (themeLibraryName) {
+          if (customTheme) {
+            // set `themePath` to custom js theme path
+            themePath = customTheme.replace(/\/$/gi, '');
+          } else if (themeLibraryName) {
             themeName = themeLibraryName.replace(/^~/, '');
             themePath = themeLibraryName.indexOf('~') === 0
               ? resolve(process.cwd(), themeName)
@@ -150,7 +153,7 @@ module.exports = function core(defaultLibraryName) {
             let moduleName;
             const defaultThemeTpl = `${libraryName}/${themeDir}/${themeDefault}`;
             const libraryObj = libraryObjs[methodName].replace(/\/$/gi, '');
-            if (themeName && libraryObj.includes(`${defaultThemeTpl}`)) {
+            if ((themeName || customTheme) && libraryObj.includes(`${defaultThemeTpl}`)) {
               moduleName = libraryObj.replace(`${defaultThemeTpl}`, '');
             } else {
               moduleName = libraryObj.replace(`${libraryName}/${themeDir}`, '');
@@ -166,7 +169,7 @@ module.exports = function core(defaultLibraryName) {
           importAll[path] = true;
           selectedMethods[methodName] = addDefault(file.path, path, { nameHint: methodName });
         } else {
-          if (style === true) {
+          if (style === true && !jsTheme) {
             addSideEffect(file.path, `${path}/style${ext}`);
           } else if (style) {
             addSideEffect(file.path, `${path}/${style}`);

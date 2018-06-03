@@ -1,6 +1,6 @@
-require("element-ui/lib/select/style.css");
+require("element-ui/packages/select/style.css");
 
-var _Select = _interopRequireDefault(require("element-ui/lib/select")).default;
+var _Select = _interopRequireDefault(require("element-ui/packages/select")).default;
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 

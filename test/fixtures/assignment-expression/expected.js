@@ -1,8 +1,8 @@
 "use strict";
 
-require("element-ui/lib/message-box/style.css");
+require("element-ui/packages/message-box/style.css");
 
-var _messageBox = _interopRequireDefault(require("element-ui/lib/message-box"));
+var _messageBox = _interopRequireDefault(require("element-ui/packages/message-box"));
 
 var _vue = _interopRequireDefault(require("vue"));
 

@@ -1,6 +1,6 @@
-require("element-ui/lib/button/style.css");
+require("element-ui/packages/button/style.css");
 
-var _Button = _interopRequireDefault(require("element-ui/lib/button")).default;
+var _Button = _interopRequireDefault(require("element-ui/packages/button")).default;
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
