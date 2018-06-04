@@ -1,16 +1,16 @@
-# babel-plugin-weexcomponent
+# babel-plugin-weex-component
 
-[![NPM version](https://img.shields.io/npm/v/babel-plugin-weexcomponent.svg)](https://npmjs.org/package/babel-plugin-weexcomponent)
-[![Build Status](https://travis-ci.org/Yanjiie/babel-plugin-weexcomponent.svg?branch=master)](https://travis-ci.org/Yanjiie/babel-plugin-weexcomponent)
-[![Coverage Status](https://coveralls.io/repos/github/Yanjiie/babel-plugin-weexcomponent/badge.svg?branch=master)](https://coveralls.io/github/Yanjiie/babel-plugin-weexcomponent?branch=master)
+[![NPM version](https://img.shields.io/npm/v/babel-plugin-weex-component.svg)](https://npmjs.org/package/babel-plugin-weex-component)
+[![Build Status](https://travis-ci.org/weex-ui-team/babel-plugin-weex-component.svg?branch=master)](https://travis-ci.org/Yanjiie/babel-plugin-weex-component)
+[![Coverage Status](https://coveralls.io/repos/github/weex-ui-team/babel-plugin-weex-component/badge.svg?branch=master)](https://coveralls.io/github/weex-ui-team/babel-plugin-weex-component?branch=master)
 
 ## Install
 
 ```shell
-npm i babel-plugin-weexcomponent -D
+npm i babel-plugin-weex-component -D
 
 # For babel6
-npm i babel-plugin-weexcomponent@0 -D
+npm i babel-plugin-weex-component@0 -D
 ```
 
 ## Example
@@ -67,7 +67,7 @@ Via `.babelrc` or babel-loader.
 
 ```javascript
 {
-  "plugins": [["weexcomponent", options]]
+  "plugins": [["weex-component", options]]
 }
 ```
 
@@ -75,11 +75,11 @@ Via `.babelrc` or babel-loader.
 ```javascript
 {
   "plugins": [xxx,
-    ["weexcomponent", {
+    ["weex-component", {
       libraryName: "antd",
       style: true,
     }, "antd"],
-    ["weexcomponent", {
+    ["weex-component", {
       libraryName: "test-module",
       style: true,
     }, "test-module"]
