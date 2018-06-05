@@ -1,16 +1,16 @@
-# babel-plugin-weex-component
+# babel-plugin-weex-ui
 
-[![NPM version](https://img.shields.io/npm/v/babel-plugin-weex-component.svg)](https://npmjs.org/package/babel-plugin-weex-component)
-[![Build Status](https://travis-ci.org/weex-ui-team/babel-plugin-weex-component.svg?branch=master)](https://travis-ci.org/Yanjiie/babel-plugin-weex-component)
-[![Coverage Status](https://coveralls.io/repos/github/weex-ui-team/babel-plugin-weex-component/badge.svg?branch=master)](https://coveralls.io/github/weex-ui-team/babel-plugin-weex-component?branch=master)
+[![NPM version](https://img.shields.io/npm/v/babel-plugin-weex-ui.svg)](https://npmjs.org/package/babel-plugin-weex-ui)
+[![Build Status](https://travis-ci.org/weex-ui-team/babel-plugin-weex-ui.svg?branch=master)](https://travis-ci.org/Yanjiie/babel-plugin-weex-ui)
+[![Coverage Status](https://coveralls.io/repos/github/weex-ui-team/babel-plugin-weex-ui/badge.svg?branch=master)](https://coveralls.io/github/weex-ui-team/babel-plugin-weex-ui?branch=master)
 
 ## Install
 
 ```shell
-npm i babel-plugin-weex-component -D
+npm i babel-plugin-weex-ui -D
 
 # For babel6
-npm i babel-plugin-weex-component@0 -D
+npm i babel-plugin-weex-ui@0 -D
 ```
 
 ## Example
