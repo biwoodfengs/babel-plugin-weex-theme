@@ -1,6 +1,6 @@
 # babel-plugin-weex-theme
 
-[![NPM version](https://img.shields.io/npm/v/babel-plugin-weex-ui.svg)](https://npmjs.org/package/babel-plugin-weex-ui)
+[![NPM version](http://112.74.90.215:7002/badge/v/@xc/babel-plugin-weex-theme.svg?style=flat-square)](https://npmjs.org/package/babel-plugin-weex-ui)
 [![Build Status](https://travis-ci.org/weex-ui-team/babel-plugin-weex-ui.svg?branch=master)](https://travis-ci.org/Yanjiie/babel-plugin-weex-ui)
 [![Coverage Status](https://coveralls.io/repos/github/weex-ui-team/babel-plugin-weex-ui/badge.svg?branch=master)](https://coveralls.io/github/weex-ui-team/babel-plugin-weex-ui?branch=master)
 
