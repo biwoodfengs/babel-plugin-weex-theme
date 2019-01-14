@@ -50,7 +50,7 @@ module.exports = function core(defaultLibraryName) {
           jsTheme = false,
           styleLibrary,
           customTheme,
-          themeDefault = 'default',
+          themeDefault = paramThemeDir  ? paramThemeDir  : 'default',
           root = '',
           camel2Dash = true,
         } = options;
@@ -237,7 +237,7 @@ module.exports = function core(defaultLibraryName) {
           const themePath = `${libraryName}/${opts.themeDir || '/theme'}`;
           const configPath = `${libraryName}/${opts.configDir || '/env'}`;
 
-          if (value === libraryName || (opts.jsTheme && value.startsWith(themePath))) {
+          if (value === libraryName || (opts.jsTheme && (value.indexOf(themePath) != -1 || value.indexOf(configPath) != -1))) {
             node.specifiers.forEach(spec => {
               if (types.isImportSpecifier(spec)) {
                 specified[spec.local.name] = spec.imported.name;
