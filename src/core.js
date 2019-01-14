@@ -44,7 +44,7 @@ module.exports = function core(defaultLibraryName) {
         const {
           libDir = 'packages',
           themeDir = 'theme',
-          configDir = 'env'
+          configDir = 'env',
           libraryName = defaultLibraryName,
           style = true,
           jsTheme = false,
