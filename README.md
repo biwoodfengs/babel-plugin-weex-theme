@@ -1,4 +1,4 @@
-# babel-plugin-weex-ui
+# babel-plugin-weex-theme
 
 [![NPM version](https://img.shields.io/npm/v/babel-plugin-weex-ui.svg)](https://npmjs.org/package/babel-plugin-weex-ui)
 [![Build Status](https://travis-ci.org/weex-ui-team/babel-plugin-weex-ui.svg?branch=master)](https://travis-ci.org/Yanjiie/babel-plugin-weex-ui)
@@ -7,10 +7,10 @@
 ## Install
 
 ```shell
-npm i babel-plugin-weex-ui -D
+xcnpm i @xc/babel-plugin-weex-theme -D
 
 # For babel6
-npm i babel-plugin-weex-ui@0 -D
+npm i babel-plugin-weex-theme@0 -D
 ```
 
 ## Example
