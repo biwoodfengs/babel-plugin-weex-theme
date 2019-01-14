@@ -1,11 +1,19 @@
 const { addSideEffect, addDefault } = require('@babel/helper-module-imports');
 const resolve = require('path').resolve;
 const isExist = require('fs').existsSync;
+const join = require('path').join;
 const cache = {};
 const cachePath = {};
 const importAll = {};
+const pathSep = '/';
+const paramThemeDir = 'qiyuango'
 
 module.exports = function core(defaultLibraryName) {
+  process.argv.forEach(function (val, index, array) {
+    if (val.startsWith('--env=')) {
+      paramThemeDir = val.replace("--env=", '')
+    }
+  });
   return ({ types }) => {
     let specified;
     let libraryObjs;
@@ -35,7 +43,8 @@ module.exports = function core(defaultLibraryName) {
 
         const {
           libDir = 'packages',
-          themeDir = 'lib/theme',
+          themeDir = 'theme',
+          configDir = 'env'
           libraryName = defaultLibraryName,
           style = true,
           jsTheme = false,
@@ -138,6 +147,7 @@ module.exports = function core(defaultLibraryName) {
             themePath = themeLibraryName.indexOf('~') === 0
               ? resolve(process.cwd(), themeName)
               : `${libraryName}/${themeDir}/${themeName}`;
+              //--->value: ./theme/aixingzou
           } else {
             themePath = `${libraryName}/${themeDir}`;
           }
@@ -150,19 +160,28 @@ module.exports = function core(defaultLibraryName) {
                 ' importing all first.');
             }
 
-            let moduleName;
-            const defaultThemeTpl = `${libraryName}/${themeDir}/${themeDefault}`;
+            //let moduleName;
+
             const libraryObj = libraryObjs[methodName].replace(/\/$/gi, '');
-            if ((themeName || customTheme) && libraryObj.includes(`${defaultThemeTpl}`)) {
-              moduleName = libraryObj.replace(`${defaultThemeTpl}`, '');
-            } else {
-              moduleName = libraryObj.replace(`${libraryName}/${themeDir}`, '');
-            }
-            if (moduleName) {
-              path = `${themePath}${moduleName}`;
-            } else {
-              path = `${themePath}${_root || '/index'}.js`;
-            }
+            const replaceDir = libraryObj.indexOf(themeDir) != -1 ? themeDir : configDir;
+            const defaultThemeTpl = `${libraryName}/${replaceDir}/${themeDefault}`;
+
+            const dftArr = defaultThemeTpl.split(pathSep);
+            const libArr = libraryObj.split(pathSep)
+
+            libArr[libArr.indexOf(replaceDir) + 1] = dftArr[dftArr.indexOf(replaceDir) + 1]
+            path = join(...libArr)
+
+            // if ((themeName || customTheme) && libraryObj.includes(`${defaultThemeTpl}`)) {
+            //   moduleName = libraryObj.replace(`${defaultThemeTpl}`, '');
+            // } else {
+            //   moduleName = libraryObj.replace(`${libraryName}/${themeDir}`, '');
+            // }
+            // if (moduleName) {
+            //   path = `${themePath}${moduleName}`;
+            // } else {
+            //   path = `${themePath}${_root || '/index'}.js`;
+            // }
             cache[libraryName] = 1;
           }
 
@@ -215,7 +234,8 @@ module.exports = function core(defaultLibraryName) {
             result = opts.find(option => option.libraryName === value) || {};
           }
           const libraryName = result.libraryName || opts.libraryName || defaultLibraryName;
-          const themePath = `${libraryName}/${opts.themeDir || 'lib/theme'}`;
+          const themePath = `${libraryName}/${opts.themeDir || '/theme'}`;
+          const configPath = `${libraryName}/${opts.configDir || '/env'}`;
 
           if (value === libraryName || (opts.jsTheme && value.startsWith(themePath))) {
             node.specifiers.forEach(spec => {
