@@ -6,7 +6,7 @@ const cache = {};
 const cachePath = {};
 const importAll = {};
 const pathSep = '/';
-const paramThemeDir = 'qiyuango'
+var paramThemeDir = 'qiyuango'
 
 module.exports = function core(defaultLibraryName) {
   process.argv.forEach(function (val, index, array) {
@@ -40,7 +40,7 @@ module.exports = function core(defaultLibraryName) {
           ); // eslint-disable-line
         }
         options = options || opts;
-
+        options.themeDefault = paramThemeDir ? paramThemeDir : 'default'
         const {
           libDir = 'packages',
           themeDir = 'theme',
@@ -50,7 +50,7 @@ module.exports = function core(defaultLibraryName) {
           jsTheme = false,
           styleLibrary,
           customTheme,
-          themeDefault = paramThemeDir  ? paramThemeDir  : 'default',
+          themeDefault = 'default',
           root = '',
           camel2Dash = true,
         } = options;
